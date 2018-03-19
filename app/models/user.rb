@@ -10,24 +10,29 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, foreign_key: "followed_id", 
                                    class_name: :Relationship,
                                    dependent: :destroy
-  has_many :followers, through: :reverse_relationships, source: :following
+  has_many :followers, through: :reverse_relationships, source: :follower
   validates :name,  presence: true, length: { maximum: 50 }
   
   def feed
     Micropost.where("user_id = ?", id)
     #Micropost
   end
+
   
   def following?(other_user)
-    relationships.find.by(follow_id :other_user.id)
+    #puts other_user
+    #puts other_user.id
+    relationships.find_by(followed_id: other_user.id)
   end
 
   def follow!(other_user)
-    relationships.create.by(follow_id :other_user.id)
+    #puts other_user
+    #puts other_user.id
+    relationships.create(followed_id: other_user.id)
   end
   
   def unfollow!(other_user)
-    relationships.find.by(follow_id :other_user.id).destroy
+    relationships.find_by(followed_id: other_user.id).destroy
   end
 
 
