@@ -6,7 +6,7 @@ class MicropostsController < ApplicationController
     def create
         @micropost = current_user.microposts.build(micropost_params)
         if @micropost.save
-            flash[:sucess] = "Micropost created!"
+            flash[:success] = "Micropost created!"
             redirect_to root_url
             #render 'static_pages/home'
         else
