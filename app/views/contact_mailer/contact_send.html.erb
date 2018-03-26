@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @contact_user.name %>様、問い合わせありがとうございます。</h1>
+    <p>問い合わせ内容</p>
+    <br> ---------------------- <br>
+    <%= @contact_user.enquiry %>
+    <br> ---------------------- 
+    <br>
+    <p>このサイトにログインするには、<%= @url %>をクリックしてください。</p>
+  </body>
+</html>

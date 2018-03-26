@@ -27,6 +27,20 @@ SampleApp::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  #config.action_mailer.default_url_options = { host: 'https://sample-app-great084.c9users.io/', port: 8080 }
+  config.action_mailer.default_url_options = { host: localhost, port: 8080 }
+
+  mail = ENV['MAIL_ADDRESS']
+  pass = ENV['MAIL_PASSWORD']
+
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true,
+    address: 'smtp.gmail.com',
+    port: '587',
+    domain: 'gmail.com',
+    authentication: 'plain',
+    user_name: mail,
+    password: pass
+  }
 
 end
